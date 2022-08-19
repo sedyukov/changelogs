@@ -1,0 +1,27 @@
+### Changelog
+
+All notable changes to this project will be documented in this file. Dates are displayed in UTC.
+
+{{#each releases}}
+    {{#if href}}
+        ##{{#unless major}}#{{/unless}} [{{title}}]({{href}}) - {{isoDate}}
+    {{else}}
+        ### {{title}} - {{isoDate}}
+    {{/if}}
+
+    {{#if summary}}
+        {{summary}}
+    {{/if}}
+
+    {{! New features. Minor release }}
+    {{#commit-list commits heading='#### Features' message='[Ff]eat:|[Ff]eature:|[Ff]eat\(\w+\):|[Ff]eature\(\w+\):|[Ff]eat\(\):|[Ff]eature\(\):'}}
+        - {{#if breaking}}**Breaking change:** {{/if}} {{subject}} {{#if href}} [`{{shorthash}}`]({{href}}){{/if}}
+    {{/commit-list}}
+
+    {{! Bug fixes. Patch release }}
+    {{#commit-list commits heading='#### Fixes' message='[Ff]ix:|[Ff]ix\(\):|[Ff]ix\(\w+\):'}}
+        - {{#if breaking}}**Breaking change:** {{/if}} {{subject}} {{#if href}} [`{{shorthash}}`]({{href}}){{/if}}
+    {{/commit-list}}
+
+
+{{/each}}
